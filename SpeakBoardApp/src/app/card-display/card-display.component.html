@@ -1,0 +1,16 @@
+<h2 class="section-title">Card Creation</h2>
+<form (submit)="createCard()">
+    <input [(ngModel)]="title" placeholder="Title" name="title">
+    <input [(ngModel)]="description" placeholder="Description" name="description">
+    <input [(ngModel)]="idList" placeholder="List ID" name="idList">
+    <button type="submit">Create Card</button>
+</form>
+<p class="success-message" *ngIf="successMessage">{{ successMessage }}</p>
+<p class="error-message" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+<h2 class="section-title">Card Display</h2>
+<div class="card-container" *ngFor="let card of cards">
+    <h2 class="card-title">{{ card.name }}</h2>
+    <p class="card-description">{{ card.desc }}</p>
+    <p class="card-date">{{ card.dateLastActivity | date }}</p>
+</div>

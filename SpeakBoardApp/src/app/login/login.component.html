@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="login-form">
+      <input class="input-field" type="text" placeholder="Username" [(ngModel)]="username">
+      <input class="input-field" type="password" placeholder="Password" [(ngModel)]="password">
+      <button class="login-button" (click)="login()">Login</button>
+      <p class="error-message">{{ errorMessage }}</p>
+    </div>
+  </div>
+  
