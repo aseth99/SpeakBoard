@@ -6,11 +6,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const app = express();
-const routes = require('./routes');
 
-app.use('/api', routes);
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
+const routes = require('./routes');
+app.use('/api', routes);
 
 
 mongoose.connect('mongodb://localhost:27017/speakboard', {
