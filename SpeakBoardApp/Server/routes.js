@@ -83,6 +83,26 @@ router.post('/cards', (req, res) => {
         });
 });
 
+// Route to get all cards on a board
+router.get('/cards', async (req, res) => {
+  try {
+    const boardId = 'bQjvAEvw';
+
+    const response = await fetch(`https://api.trello.com/1/boards/${boardId}/cards?key=${TRELLO_API_KEY}&token=${TRELLO_API_TOKEN}`, {
+      method: 'GET'
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to get cards on board. Response: ${response.status} ${response.statusText}`);
+    }
+
+    const cards = await response.json();
+    res.json(cards);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
 
 // route for getting a card from Trello
 router.get('/cards/:id', async (req, res) => {
